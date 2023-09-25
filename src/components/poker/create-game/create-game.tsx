@@ -1,0 +1,183 @@
+"use client";
+
+import React, { useState } from "react";
+import {
+  uniqueNamesGenerator,
+  Config,
+  starWars,
+  colors,
+  animals,
+} from "unique-names-generator";
+
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import { useRouter } from "next/navigation";
+import { GameType, NewGame } from "@/types/game";
+import { addNewGame } from "@/services/games";
+
+const gameNameConfig: Config = {
+  dictionaries: [colors, animals],
+  separator: " ",
+  style: "capital",
+};
+
+const userNameConfig: Config = {
+  dictionaries: [starWars],
+};
+
+export const CreateGame = () => {
+  const router = useRouter();
+  const [gameName, setGameName] = useState(
+    uniqueNamesGenerator(gameNameConfig)
+  );
+  const [createdBy, setCreatedBy] = useState(
+    uniqueNamesGenerator(userNameConfig)
+  );
+  const [gameType, setGameType] = useState(GameType.Fibonacci);
+  const [hasDefaults, setHasDefaults] = useState({ game: true, name: true });
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    setLoading(true);
+    const game: NewGame = {
+      name: gameName,
+      createdBy: createdBy,
+      gameType: gameType,
+      createdAt: new Date(),
+    };
+
+    try {
+      const newGameId = await addNewGame(game);
+      if (newGameId) {
+        setLoading(false);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+
+    //router.push(`/game/${newGameId}`);
+  };
+
+  const emptyGameName = () => {
+    if (hasDefaults.game) {
+      setGameName("");
+      hasDefaults.game = false;
+      setHasDefaults(hasDefaults);
+    }
+  };
+
+  const emptyCreatorName = () => {
+    if (hasDefaults.name) {
+      setCreatedBy("");
+      hasDefaults.name = false;
+      setHasDefaults(hasDefaults);
+    }
+  };
+
+  return (
+    <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+      <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+        <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+          Create new session
+        </h2>
+      </div>
+
+      <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+        <form className="space-y-6" onSubmit={handleSubmit}>
+          <div>
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium leading-6 text-gray-900"
+            >
+              Session name*
+            </label>
+            <div className="mt-2">
+              <Input
+                id="session-name"
+                name="session-name"
+                type="text"
+                placeholder="Enter a session name"
+                value={gameName || ""}
+                onClick={() => emptyGameName()}
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+                  setGameName(event.target.value)
+                }
+                required
+              />
+            </div>
+          </div>
+
+          <div>
+            <div>
+              <label
+                htmlFor="your-name"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
+                Your name*
+              </label>
+            </div>
+            <div className="mt-2">
+              <Input
+                id="your-name"
+                name="your-name"
+                type="text"
+                autoComplete="your-name"
+                required
+                placeholder="Enter your name"
+                value={createdBy || ""}
+                onClick={() => emptyCreatorName()}
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+                  setCreatedBy(event.target.value)
+                }
+              />
+            </div>
+          </div>
+
+          <div>
+            <RadioGroup
+              aria-label="gender"
+              name="gender1"
+              value={gameType}
+              onChange={(
+                event: React.ChangeEvent<{
+                  name?: string | undefined;
+                  value: any;
+                }>
+              ) => setGameType(event.target.value)}
+            >
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value={GameType.Fibonacci} id="r1" />
+                <Label htmlFor="r1">
+                  Fibonacci (0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89)
+                </Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value={GameType.ShortFibonacci} id="r2" />
+                <Label htmlFor="r2">
+                  Short Fibonacci (0, ½, 1, 2, 3, 5, 8, 13, 20, 40, 100)
+                </Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value={GameType.TShirt} id="r3" />
+                <Label htmlFor="r3">T-Shirt (XXS, XS, S, M, L, XL, XXL)</Label>
+              </div>
+            </RadioGroup>
+          </div>
+
+          <div>
+            <Button
+              type="submit"
+              className="flex w-full justify-center"
+              disabled={loading}
+            >
+              Create
+            </Button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+};
