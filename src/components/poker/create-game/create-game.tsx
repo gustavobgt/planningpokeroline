@@ -49,16 +49,13 @@ export const CreateGame = () => {
       createdAt: new Date(),
     };
 
-    try {
-      const newGameId = await addNewGame(game);
-      if (newGameId) {
-        setLoading(false);
-      }
-    } catch (error) {
-      console.log(error);
+    const newGameId = await addNewGame(game);
+
+    if (newGameId) {
+      setLoading(false);
     }
 
-    //router.push(`/game/${newGameId}`);
+    router.push(`/game/${newGameId}`);
   };
 
   const emptyGameName = () => {
@@ -141,12 +138,7 @@ export const CreateGame = () => {
               aria-label="gender"
               name="gender1"
               value={gameType}
-              onChange={(
-                event: React.ChangeEvent<{
-                  name?: string | undefined;
-                  value: any;
-                }>
-              ) => setGameType(event.target.value)}
+              onChange={(event: any) => setGameType(event.target.value)}
             >
               <div className="flex items-center space-x-2">
                 <RadioGroupItem value={GameType.Fibonacci} id="r1" />

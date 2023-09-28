@@ -1,6 +1,6 @@
 import { CreateGame } from "@/components/poker/create-game/create-game";
 
-export default function Home() {
+export default function HomePage() {
   return (
     <main>
       <CreateGame />
