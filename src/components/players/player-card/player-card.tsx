@@ -12,13 +12,12 @@ import {
   Card,
   CardHeader,
   CardContent,
-  CardTitle,
   CardFooter,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 
 import { PlayerCardProps } from "./player-card.types";
-import { Button } from "@/components/ui/button";
 
 export const PlayerCard = (props: PlayerCardProps) => {
   const { game, player, currentPlayerId } = props;
