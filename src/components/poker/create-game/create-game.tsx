@@ -135,25 +135,33 @@ export const CreateGame = () => {
 
           <div>
             <RadioGroup
-              aria-label="gender"
-              name="gender1"
-              value={gameType}
-              onChange={(event: any) => setGameType(event.target.value)}
+              defaultValue={GameType.Fibonacci}
+              aria-label="game type"
+              name="game-type"
+              onValueChange={(value) => {
+                setGameType(value as GameType);
+              }}
             >
               <div className="flex items-center space-x-2">
-                <RadioGroupItem value={GameType.Fibonacci} id="r1" />
+                <RadioGroupItem
+                  value={GameType.Fibonacci}
+                  id={GameType.Fibonacci}
+                />
                 <Label htmlFor="r1">
                   Fibonacci (0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89)
                 </Label>
               </div>
               <div className="flex items-center space-x-2">
-                <RadioGroupItem value={GameType.ShortFibonacci} id="r2" />
+                <RadioGroupItem
+                  value={GameType.ShortFibonacci}
+                  id={GameType.ShortFibonacci}
+                />
                 <Label htmlFor="r2">
                   Short Fibonacci (0, ½, 1, 2, 3, 5, 8, 13, 20, 40, 100)
                 </Label>
               </div>
               <div className="flex items-center space-x-2">
-                <RadioGroupItem value={GameType.TShirt} id="r3" />
+                <RadioGroupItem value={GameType.TShirt} id={GameType.TShirt} />
                 <Label htmlFor="r3">T-Shirt (XXS, XS, S, M, L, XL, XXL)</Label>
               </div>
             </RadioGroup>
