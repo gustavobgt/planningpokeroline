@@ -1,9 +1,4 @@
-import {
-  ExitIcon,
-  EyeOpenIcon,
-  ResetIcon,
-  TrashIcon,
-} from "@radix-ui/react-icons";
+import { Eye, RotateCcw, Trash2, LogOut, Link } from "lucide-react";
 
 import React from "react";
 import { useRouter } from "next/navigation";
@@ -21,7 +16,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger
+  DialogTrigger,
 } from "@/components/ui/dialog";
 
 import { GameControllerProps } from "./game-controller.types";
@@ -58,16 +53,16 @@ export const GameController = ({
 
   return (
     <>
-      <div className="flex justify-center mb-5">
+      <div className="flex justify-center p-5">
         <Card>
           <CardHeader className="p-4">
             <CardTitle>{game.name}</CardTitle>
-            <div className="flex gap-2">
+            <div className="flex gap-2 text-sm font-medium">
               <span> {game.gameStatus}</span>
               {game.gameType !== GameType.TShirt && (
                 <>
                   |<span>Average:</span>
-                  <span>{game.average || 0}</span>
+                  <span className="text-red-500 font-bold">{game.average || 0}</span>
                 </>
               )}
             </div>
@@ -75,7 +70,7 @@ export const GameController = ({
 
           <Separator />
 
-          <CardContent className="flex gap-5 p-4">
+          <CardContent className="flex justify-center gap-5 p-4">
             {isModerator(game.createdById, currentPlayerId) && (
               <>
                 <div className="flex justify-center flex-col text-center">
@@ -86,7 +81,7 @@ export const GameController = ({
                       variant="outline"
                       size="icon"
                     >
-                      <EyeOpenIcon className="h-4 w-4" />
+                      <Eye className="h-6 w-6" />
                     </Button>
                   </div>
                   <span className="text-xs mt-1">Reveal</span>
@@ -100,7 +95,7 @@ export const GameController = ({
                       variant="outline"
                       size="icon"
                     >
-                      <ResetIcon className="h-4 w-4" />
+                      <RotateCcw className="h-6 w-6" />
                     </Button>
                   </div>
                   <span className="text-xs mt-1">Restart</span>
@@ -115,7 +110,7 @@ export const GameController = ({
                           variant="outline"
                           size="icon"
                         >
-                          <TrashIcon className="h-4 w-4" />
+                          <Trash2 className="h-6 w-6" />
                         </Button>
                       </DialogTrigger>
                       <DialogContent className="sm:max-w-[425px]">
@@ -150,7 +145,7 @@ export const GameController = ({
                   variant="outline"
                   size="icon"
                 >
-                  <ExitIcon className="h-4 w-4" />
+                  <LogOut className="h-6 w-6" />
                 </Button>
               </div>
               <span className="text-xs mt-1">Exit</span>
@@ -167,7 +162,7 @@ export const GameController = ({
                   variant="outline"
                   size="icon"
                 >
-                  <ExitIcon className="h-4 w-4" />
+                  <Link className="h-6 w-6" />
                 </Button>
               </div>
               <span className="text-xs mt-1">Invite</span>

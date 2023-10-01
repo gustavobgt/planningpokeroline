@@ -19,7 +19,7 @@ export const GameArea = (props: GameAreaProps) => {
         <GameController game={game} currentPlayerId={currentPlayerId} />
       </div>
 
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center p-5">
         <CardPicker game={game} players={players} currentPlayerId={currentPlayerId} />
       </div>
     </>

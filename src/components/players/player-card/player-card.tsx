@@ -1,5 +1,6 @@
 import React from "react";
 import { Cross1Icon } from "@radix-ui/react-icons";
+import { UserX } from "lucide-react";
 
 import { Game, GameType } from "@/types/game";
 import { Player } from "@/types/player";
@@ -38,7 +39,9 @@ export const PlayerCard = (props: PlayerCardProps) => {
       className="px-3 h-[220px]"
     >
       <CardHeader>
-        <Badge variant="outline" className="justify-center">{player.name}</Badge>
+        <Badge variant="outline" className="justify-center">
+          {player.name}
+        </Badge>
       </CardHeader>
       <CardContent className="flex items-center justify-center text-6xl pt-2">
         <h2>{getCardValue(player, game)}</h2>
@@ -47,9 +50,10 @@ export const PlayerCard = (props: PlayerCardProps) => {
         <CardFooter>
           <Button
             onClick={() => removeUser(game.id, player.id)}
-            className="w-full bg-red-700"
+            className="w-full bg-red-600"
+            size="icon"
           >
-            kick <Cross1Icon className="ml-2 h-4 w-4" />
+            <UserX className="mr-2 h-4 w-4" /> kick
           </Button>
         </CardFooter>
       )}
