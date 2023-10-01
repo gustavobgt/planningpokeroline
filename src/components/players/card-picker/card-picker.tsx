@@ -48,7 +48,7 @@ export const CardPicker = ({
                 {card.value >= 0 && (
                   <>
                     <span className="self-stretch text-left text-xs">
-                      {card.displayValue}
+                      {card.displayValue} 
                     </span>
                     <h4 className="text-2xl font-medium">
                       {card.displayValue}
@@ -87,14 +87,11 @@ const getCardStyle = (
   if (player && player.value !== undefined && player.value === card.value) {
     return {
       transform: `translateY(-15px)`,
-      //marginTop: "-15px",
       zIndex: 5,
-      backgroundColor: card.color,
       border: "1px dashed black",
       boxShadow: "0 0px 10px 0 grey",
     };
   }
-  return { backgroundColor: card.color };
 };
 
 const getPointerEvent = (game: Game) => {

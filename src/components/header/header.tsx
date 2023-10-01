@@ -3,6 +3,7 @@ import { Spade } from "lucide-react";
 import NextLink from "next/link";
 
 import { MainNav } from "./components/main-nav";
+import { ThemeSwitcher } from "./components/theme-switcher/theme-switcher";
 //import { UserNav } from "./components/user-nav";
 
 export const Header = () => {
@@ -20,12 +21,10 @@ export const Header = () => {
             </NextLink>
 
             <MainNav className="mx-6" />
-
-            {/*
             <div className="ml-auto flex items-center space-x-4">
-              <UserNav />
+              <ThemeSwitcher />
+              {/*<UserNav />*/}
             </div>
-  */}
           </div>
         </div>
       </div>

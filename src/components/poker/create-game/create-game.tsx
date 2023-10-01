@@ -77,7 +77,7 @@ export const CreateGame = () => {
   return (
     <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-        <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+        <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight">
           Create new session
         </h2>
       </div>
@@ -87,7 +87,7 @@ export const CreateGame = () => {
           <div>
             <label
               htmlFor="email"
-              className="block text-sm font-medium leading-6 text-gray-900"
+              className="block text-sm font-medium leading-6"
             >
               Session name*
             </label>
@@ -111,7 +111,7 @@ export const CreateGame = () => {
             <div>
               <label
                 htmlFor="your-name"
-                className="block text-sm font-medium leading-6 text-gray-900"
+                className="block text-sm font-medium leading-6"
               >
                 Your name*
               </label>

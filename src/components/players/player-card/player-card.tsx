@@ -32,14 +32,9 @@ export const PlayerCard = (props: PlayerCardProps) => {
     player.id !== currentPlayerId;
 
   return (
-    <Card
-      style={{
-        backgroundColor: getCardColor(game, player.value),
-      }}
-      className="px-3 h-[220px]"
-    >
+    <Card className="px-3 h-[220px] relative min-w-[150px]">
       <CardHeader>
-        <Badge variant="outline" className="justify-center">
+        <Badge variant="outline" className="text-center justify-center break-words w-[100px]">
           {player.name}
         </Badge>
       </CardHeader>
@@ -48,25 +43,18 @@ export const PlayerCard = (props: PlayerCardProps) => {
       </CardContent>
       {hasModeratorControl && (
         <CardFooter>
-          <Button
-            onClick={() => removeUser(game.id, player.id)}
-            className="w-full bg-red-600"
-            size="icon"
-          >
-            <UserX className="mr-2 h-4 w-4" /> kick
-          </Button>
+          
         </CardFooter>
       )}
+      <Button
+            onClick={() => removeUser(game.id, player.id)}
+            className="absolute top-[-12px] right-[-12px] rounded-full"
+            size="icon"
+          >
+            <UserX className="h-4 w-4" />
+          </Button>
     </Card>
   );
-};
-
-const getCardColor = (game: Game, value: number | undefined): string => {
-  if (game.gameStatus !== Status.Finished) {
-    return "var(--color-background-secondary)";
-  }
-  const card = getCards(game.gameType).find((card) => card.value === value);
-  return card ? card.color : "var(--color-background-secondary)";
 };
 
 const getCardValue = (player: Player, game: Game) => {
