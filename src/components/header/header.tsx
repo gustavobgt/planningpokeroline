@@ -9,7 +9,7 @@ import { ThemeSwitcher } from "./components/theme-switcher/theme-switcher";
 export const Header = () => {
   return (
     <>
-      <div className="hidden flex-col md:flex">
+      <div className="flex flex-col">
         <div className="border-b">
           <div className="flex h-16 items-center px-4">
             <NextLink
