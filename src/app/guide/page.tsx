@@ -1,7 +1,7 @@
 export default function GuidePage() {
   return (
     <main>
-      <div className="py-5 px-10 max-w-[1440px] mx-auto">
+      <div className="py-12 px-6 max-w-[1440px] mx-auto">
         <h1 className="text-3xl font-semibold text-center">Guidelines on estimating user stories in Agile</h1>
         <br />
         <p>
