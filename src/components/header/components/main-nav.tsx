@@ -1,7 +1,7 @@
 "use client";
 
 import NextLink from "next/link";
-import { Play, PlusCircle } from "lucide-react";
+import { Play, PlusCircle, Search } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 import { cn } from "@/lib/utils";
@@ -34,6 +34,15 @@ export function MainNav({
       >
         <Play className="mr-1" />
         Join Session
+      </NextLink>
+      <NextLink
+        href="/guide"
+        className={`${
+          !(pathname === "/guide") ? "text-muted-foreground" : ""
+        } inline-flex items-center text-sm font-medium transition-colors hover:text-primary`}
+      >
+        <Search className="mr-1" />
+        Guide
       </NextLink>
     </nav>
   );
