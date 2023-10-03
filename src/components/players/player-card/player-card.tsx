@@ -34,7 +34,10 @@ export const PlayerCard = (props: PlayerCardProps) => {
   return (
     <Card className="px-3 h-[220px] relative min-w-[150px]">
       <CardHeader>
-        <Badge variant="outline" className="text-center justify-center break-words w-[100px]">
+        <Badge
+          variant="outline"
+          className="text-center justify-center break-words w-[100px]"
+        >
           {player.name}
         </Badge>
       </CardHeader>
@@ -42,17 +45,14 @@ export const PlayerCard = (props: PlayerCardProps) => {
         <h2>{getCardValue(player, game)}</h2>
       </CardContent>
       {hasModeratorControl && (
-        <CardFooter>
-          
-        </CardFooter>
+        <Button
+          onClick={() => removeUser(game.id, player.id)}
+          className="absolute top-[-12px] right-[-12px] rounded-full"
+          size="icon"
+        >
+          <UserX className="h-4 w-4" />
+        </Button>
       )}
-      <Button
-            onClick={() => removeUser(game.id, player.id)}
-            className="absolute top-[-12px] right-[-12px] rounded-full"
-            size="icon"
-          >
-            <UserX className="h-4 w-4" />
-          </Button>
     </Card>
   );
 };
