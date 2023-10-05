@@ -1,4 +1,4 @@
-export default function GuidePage() {
+export default function ExamplesPage() {
   return (
     <main>
       <div className="py-12 px-6 max-w-[1440px] mx-auto">
