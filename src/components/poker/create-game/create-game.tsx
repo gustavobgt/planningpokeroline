@@ -86,6 +86,7 @@ export const CreateGame = () => {
           width={460.5}
           height={323.86801}
           alt=""
+          priority
         />
 
         <p className="text-base font-medium text-left">

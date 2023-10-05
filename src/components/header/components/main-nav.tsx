@@ -1,7 +1,7 @@
 "use client";
 
 import NextLink from "next/link";
-import { Play, PlusCircle, Search } from "lucide-react";
+import { Play, PlusCircle, Search, BookOpen } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 import { cn } from "@/lib/utils";
@@ -43,6 +43,15 @@ export function MainNav({
       >
         <Search className="mr-1" />
         Guide
+      </NextLink>
+      <NextLink
+        href="/examples"
+        className={`${
+          !(pathname === "/examples") ? "text-muted-foreground" : ""
+        } inline-flex items-center text-sm font-medium transition-colors hover:text-primary`}
+      >
+        <BookOpen className="mr-1" />
+        Examples
       </NextLink>
     </nav>
   );
